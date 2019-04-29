@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ukD-MP-hgb">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Creepster-Regular.ttf">
+            <string>Creepster-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Initial View Controller-->
+        <scene sceneID="xiT-VQ-4X0">
+            <objects>
+                <viewController storyboardIdentifier="InitialViewController" id="ukD-MP-hgb" customClass="InitialViewController" customModule="Zombieless" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q18-Ki-uKN">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jumpingzombiemain" translatesAutoresizingMaskIntoConstraints="NO" id="sG3-zJ-40R">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zombieless" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nm-aw-Fy4">
+                                <rect key="frame" x="186" y="47" width="295.5" height="82"/>
+                                <fontDescription key="fontDescription" name="Creepster-Regular" family="Creepster" pointSize="70"/>
+                                <color key="textColor" red="0.088078341951545736" green="0.72613447208695003" blue="0.28724046634871186" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdq-J0-kLB">
+                                <rect key="frame" x="235" y="240" width="197" height="65"/>
+                                <fontDescription key="fontDescription" name="Creepster-Regular" family="Creepster" pointSize="45"/>
+                                <state key="normal" title="Game Start">
+                                    <color key="titleColor" red="0.91921168565750122" green="0.05269361140376453" blue="0.032522068773907779" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="gameStart:" destination="ukD-MP-hgb" eventType="touchUpInside" id="nPK-fg-LzJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1nm-aw-Fy4" firstAttribute="centerX" secondItem="QDy-P6-JbJ" secondAttribute="centerX" id="Aqk-vV-S80"/>
+                            <constraint firstItem="sG3-zJ-40R" firstAttribute="top" secondItem="q18-Ki-uKN" secondAttribute="top" id="F7E-Cg-P1a"/>
+                            <constraint firstItem="1nm-aw-Fy4" firstAttribute="top" secondItem="QDy-P6-JbJ" secondAttribute="top" constant="47" id="IAN-X1-Jwo"/>
+                            <constraint firstItem="sG3-zJ-40R" firstAttribute="bottom" secondItem="QDy-P6-JbJ" secondAttribute="bottom" id="Slq-vt-MsW"/>
+                            <constraint firstItem="QDy-P6-JbJ" firstAttribute="bottom" secondItem="zdq-J0-kLB" secondAttribute="bottom" constant="70" id="Zjk-N8-XJY"/>
+                            <constraint firstItem="sG3-zJ-40R" firstAttribute="leading" secondItem="QDy-P6-JbJ" secondAttribute="leading" id="u2x-q4-IVJ"/>
+                            <constraint firstItem="sG3-zJ-40R" firstAttribute="trailing" secondItem="QDy-P6-JbJ" secondAttribute="trailing" id="uZm-Ei-25h"/>
+                            <constraint firstItem="zdq-J0-kLB" firstAttribute="centerX" secondItem="QDy-P6-JbJ" secondAttribute="centerX" id="ywF-I4-lXy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QDy-P6-JbJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wy-Gh-lcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-266.39999999999998" y="26.53673163418291"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="Zombieless" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="662" y="27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="jumpingzombiemain" width="960" height="540"/>
+    </resources>
+</document>
