@@ -16,6 +16,8 @@
 		152B27DD22760ECA008C9609 /* bgm3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 152B27DB22760EC9008C9609 /* bgm3.mp3 */; };
 		152B27DE22760ECA008C9609 /* bgm2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 152B27DC22760ECA008C9609 /* bgm2.mp3 */; };
 		152B27E022761070008C9609 /* coin2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 152B27DF22761070008C9609 /* coin2.mp3 */; };
+		1577F02622A10D3B0006A463 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1577F02522A10D3B0006A463 /* Extensions.swift */; };
+		1577F02A22A2535D0006A463 /* EvilLaugh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1577F02922A2535D0006A463 /* EvilLaugh.mp3 */; };
 		15920D4E220149F70074EC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15920D4D220149F70074EC0A /* AppDelegate.swift */; };
 		15920D50220149F70074EC0A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 15920D4F220149F70074EC0A /* GameScene.sks */; };
 		15920D52220149F70074EC0A /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 15920D51220149F70074EC0A /* Actions.sks */; };
@@ -36,6 +38,8 @@
 		152B27DB22760EC9008C9609 /* bgm3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm3.mp3; sourceTree = "<group>"; };
 		152B27DC22760ECA008C9609 /* bgm2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm2.mp3; sourceTree = "<group>"; };
 		152B27DF22761070008C9609 /* coin2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = coin2.mp3; sourceTree = "<group>"; };
+		1577F02522A10D3B0006A463 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1577F02922A2535D0006A463 /* EvilLaugh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EvilLaugh.mp3; sourceTree = "<group>"; };
 		15920D4A220149F70074EC0A /* Zombieless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zombieless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15920D4D220149F70074EC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15920D4F220149F70074EC0A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				152B27DF22761070008C9609 /* coin2.mp3 */,
 				150B6F372245141900372AA2 /* win.mp3 */,
 				150B6F312244F9B100372AA2 /* zombie.wav */,
+				1577F02922A2535D0006A463 /* EvilLaugh.mp3 */,
 				15920D4D220149F70074EC0A /* AppDelegate.swift */,
 				15920D4F220149F70074EC0A /* GameScene.sks */,
 				15920D51220149F70074EC0A /* Actions.sks */,
@@ -96,6 +101,7 @@
 				15920D5A220149F80074EC0A /* Assets.xcassets */,
 				15920D5C220149F80074EC0A /* LaunchScreen.storyboard */,
 				15920D5F220149F80074EC0A /* Info.plist */,
+				1577F02522A10D3B0006A463 /* Extensions.swift */,
 			);
 			path = Zombieless;
 			sourceTree = "<group>";
@@ -168,6 +174,7 @@
 				15920D5B220149F80074EC0A /* Assets.xcassets in Resources */,
 				150B6F382245141900372AA2 /* win.mp3 in Resources */,
 				150B6F322244F9B100372AA2 /* zombie.wav in Resources */,
+				1577F02A22A2535D0006A463 /* EvilLaugh.mp3 in Resources */,
 				15920D5E220149F80074EC0A /* LaunchScreen.storyboard in Resources */,
 				15920D52220149F70074EC0A /* Actions.sks in Resources */,
 				150B6F2E2244F74B00372AA2 /* bgm1.mp3 in Resources */,
@@ -181,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1577F02622A10D3B0006A463 /* Extensions.swift in Sources */,
 				15920D54220149F70074EC0A /* GameScene.swift in Sources */,
 				15920D56220149F70074EC0A /* GameViewController.swift in Sources */,
 				15920D4E220149F70074EC0A /* AppDelegate.swift in Sources */,

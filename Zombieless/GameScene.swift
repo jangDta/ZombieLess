@@ -14,6 +14,8 @@ class GameScene: SKScene {
     var coinMan: SKSpriteNode?
     var coinTimer: Timer?
     var bombTimer: Timer?
+    var zombieTimer: Timer?
+    
     //var ground: SKSpriteNode?
     var ceil: SKSpriteNode?
     var scoreLabel: SKLabelNode?
@@ -26,6 +28,8 @@ class GameScene: SKScene {
     let coinCategory: UInt32 = 0x1 << 2
     let bombCategory: UInt32 = 0x1 << 3
     let groundAndCeilCategory: UInt32 = 0x1 << 4
+    let zombieCategory: UInt32 = 0x1 << 5
+    
     
     var score = 0{
         didSet{
@@ -33,10 +37,11 @@ class GameScene: SKScene {
         }
     }
     
-    let clearScore = 5
+    let clearScore = 20
     
     var isPlaying = true
     var isStop = false
+    var jumpCount = 0
     
     
     override func didMove(to view: SKView) {
@@ -71,6 +76,7 @@ class GameScene: SKScene {
         setBackground()
         startTimers()
         createGrass()
+        createZombie()
     }
     
     func setBGM(){
@@ -97,6 +103,11 @@ class GameScene: SKScene {
         bombTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { (timer) in
             self.createBomb()
         })
+        
+        zombieTimer = Timer.scheduledTimer(withTimeInterval: 8, repeats: true, block: { (timer) in
+            self.createFastZombie()
+        })
+        
     }
     
     func createGrass(){
@@ -107,7 +118,8 @@ class GameScene: SKScene {
             let grass = SKSpriteNode(imageNamed: "grass")
             grass.physicsBody = SKPhysicsBody(rectangleOf: grass.size)
             grass.physicsBody?.categoryBitMask = groundAndCeilCategory
-            grass.physicsBody?.collisionBitMask = groundAndCeilCategory
+            grass.physicsBody?.collisionBitMask = 0
+            grass.physicsBody?.contactTestBitMask = coinManCategory
             grass.physicsBody?.affectedByGravity = false
             grass.physicsBody?.isDynamic = false
             addChild(grass)
@@ -130,6 +142,7 @@ class GameScene: SKScene {
     
     func createCoin(){
         let coin = SKSpriteNode(imageNamed: "vaccine")
+        coin.size = CGSize(width: 100, height: 100)
         coin.physicsBody = SKPhysicsBody(rectangleOf: coin.size)
         coin.physicsBody?.affectedByGravity = false
         coin.physicsBody?.categoryBitMask = coinCategory
@@ -154,6 +167,7 @@ class GameScene: SKScene {
     
     func createBomb(){
         let bomb = SKSpriteNode(imageNamed: "virus")
+        bomb.size = CGSize(width: 100, height: 100)
         bomb.physicsBody = SKPhysicsBody(rectangleOf: bomb.size)
         bomb.physicsBody?.affectedByGravity = false
         bomb.physicsBody?.categoryBitMask = bombCategory
@@ -175,6 +189,76 @@ class GameScene: SKScene {
         bomb.run(SKAction.sequence([moveLeft, SKAction.removeFromParent()]))
     }
     
+    func createZombie(){
+        let zombie = SKSpriteNode(imageNamed: "Run1")
+        zombie.physicsBody?.categoryBitMask = zombieCategory
+        zombie.physicsBody?.contactTestBitMask = coinManCategory
+        
+        var coinManRun: [SKTexture] = []
+        for number in 4 ... 10{
+            let tex = SKTexture(imageNamed: "Run\(number)")
+            coinManRun.append(tex)
+        }
+        
+        
+        zombie.run(SKAction.repeatForever(SKAction.animate(with: coinManRun, timePerFrame: 0.1)))
+        zombie.size = CGSize(width: 170, height: 250)
+        zombie.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 170, height: 250))
+        zombie.physicsBody?.affectedByGravity = false
+        zombie.physicsBody?.categoryBitMask = zombieCategory
+        zombie.physicsBody?.contactTestBitMask = coinManCategory
+        zombie.physicsBody?.collisionBitMask = 0
+        addChild(zombie)
+        
+        let sizingGrass = SKSpriteNode(imageNamed: "grass")
+    
+//        let maxY = size.height/2 - zombie.size.height
+//        let minY = -size.height/2 + zombie.size.height + sizingGrass.size.height
+        
+        //let bombY = maxY - CGFloat(arc4random_uniform(UInt32(maxY-minY)))
+        
+        zombie.position = CGPoint(x: -size.width/2 - zombie.size.width/2, y: -size.height/2 + zombie.size.height/2 + sizingGrass.size.height/2)
+        
+        let moveRight = SKAction.moveBy(x: size.width + zombie.size.width, y: 0, duration: 130)
+        
+        zombie.run(SKAction.sequence([moveRight, SKAction.removeFromParent()]))
+    }
+    
+    func createFastZombie(){
+        let zombie = SKSpriteNode(imageNamed: "Run1")
+        zombie.physicsBody?.categoryBitMask = zombieCategory
+        zombie.physicsBody?.contactTestBitMask = coinManCategory
+        
+        var coinManRun: [SKTexture] = []
+        for number in 4 ... 10{
+            let tex = SKTexture(imageNamed: "Run\(number)-2")
+            coinManRun.append(tex)
+        }
+        zombie.run(SKAction.playSoundFileNamed("EvilLaugh.mp3", waitForCompletion: false))
+        
+        zombie.run(SKAction.repeatForever(SKAction.animate(with: coinManRun, timePerFrame: 0.1)))
+        zombie.size = CGSize(width: 100, height: 150)
+        zombie.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 150))
+        zombie.physicsBody?.affectedByGravity = false
+        zombie.physicsBody?.categoryBitMask = zombieCategory
+        zombie.physicsBody?.contactTestBitMask = coinManCategory
+        zombie.physicsBody?.collisionBitMask = 0
+        addChild(zombie)
+        
+        let sizingGrass = SKSpriteNode(imageNamed: "grass")
+        
+        //        let maxY = size.height/2 - zombie.size.height
+        //        let minY = -size.height/2 + zombie.size.height + sizingGrass.size.height
+        
+        //let bombY = maxY - CGFloat(arc4random_uniform(UInt32(maxY-minY)))
+        
+        zombie.position = CGPoint(x: -size.width - zombie.size.width/2, y: -size.height/2 + zombie.size.height/2 + sizingGrass.size.height/2)
+        
+        let moveRight = SKAction.moveBy(x: 2*size.width + zombie.size.width, y: 0, duration: 9)
+        
+        zombie.run(SKAction.sequence([moveRight, SKAction.removeFromParent()]))
+    }
+    
     func createPause(){
         let pause = SKSpriteNode(imageNamed: "interface")
         pause.name = "pause"
@@ -194,9 +278,8 @@ class GameScene: SKScene {
             coinMan?.run(SKAction.playSoundFileNamed("zombie.wav", waitForCompletion: false))
             
             var zombieManRun: [SKTexture] = []
-            for number in 0 ... 7{
-                //zombieManRun.append(SKTexture(imageNamed: "Walk (\(number))"))
-                zombieManRun.append(SKTexture(imageNamed: "__Zombie01_Dead_00\(number)"))
+            for number in 1 ... 8{
+                zombieManRun.append(SKTexture(imageNamed: "Dead\(number)"))
             }
             
             coinMan?.run(SKAction.playSoundFileNamed("zombie.wav", waitForCompletion: false))
@@ -321,7 +404,10 @@ class GameScene: SKScene {
         }
         
         if !(scene?.isPaused)!{
-            coinMan?.physicsBody?.applyForce(CGVector(dx: 0, dy: 70000))
+            if jumpCount < 2{
+                coinMan?.physicsBody?.applyForce(CGVector(dx: 0, dy: 60000))
+                jumpCount += 1
+            }
         }
         
         
@@ -396,34 +482,31 @@ extension GameScene: SKPhysicsContactDelegate{
                 for number in 1 ... 10{
                     zombieManRun.append(SKTexture(imageNamed: "__Zombie01_Dead_00\(number)"))
                 }
-                //coinMan?.run(SKAction.animate(with: zombieManRun, timePerFrame: 0.5))
                 
-                //coinMan?.run(SKAction.playSoundFileNamed("zombie.wav", waitForCompletion: false))
-                
-                //            self.gameOver {
-                //                self.pauseGame()
-                //            }
                 self.gameOver(finished: self.pauseGame)
             }
             
             if contact.bodyB.categoryBitMask == bombCategory{
                 print("GAME OVER")
                 
-                //            var zombieManRun: [SKTexture] = []
-                //            for number in 0 ... 7{
-                //                //zombieManRun.append(SKTexture(imageNamed: "Walk (\(number))"))
-                //                zombieManRun.append(SKTexture(imageNamed: "__Zombie01_Dead_00\(number)"))
-                //            }
-                //
-                //            coinMan?.run(SKAction.playSoundFileNamed("zombie.wav", waitForCompletion: false))
-                //
-                //            coinMan?.run(SKAction.animate(with: zombieManRun, timePerFrame: 0.15))
-                
-                //coinMan?.run(SKAction.playSoundFileNamed("zombie.wav", waitForCompletion: false))
-                
                 self.gameOver(finished: self.pauseGame)
             }
             
+            if contact.bodyA.categoryBitMask == groundAndCeilCategory{
+                jumpCount = 0
+            }
+            
+            if contact.bodyB.categoryBitMask == groundAndCeilCategory{
+                jumpCount = 0
+            }
+            
+            if contact.bodyA.categoryBitMask == zombieCategory{
+                self.gameOver(finished: self.pauseGame)
+            }
+            
+            if contact.bodyB.categoryBitMask == zombieCategory{
+                self.gameOver(finished: self.pauseGame)
+            }
         }
     }
     
